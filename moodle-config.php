@@ -291,7 +291,7 @@ $CFG->admin = 'admin';
 //
 // Enable when using external SSL appliance for performance reasons.
 // Please note that site may be accessible via https: or https:, but not both!
-//      $CFG->sslproxy = true;
+     $CFG->sslproxy = true;
 //
 // This setting will cause the userdate() function not to fix %d in
 // date strings, and just let them show with a zero prefix.
@@ -362,7 +362,7 @@ $CFG->admin = 'admin';
 //     $CFG->apacheloguser = 0; // Turn this feature off. Default value.
 //     $CFG->apacheloguser = 1; // Log user id.
 //     $CFG->apacheloguser = 2; // Log full name in cleaned format. ie, Darth Vader will be displayed as darth_vader.
-//     $CFG->apacheloguser = 3; // Log username.
+    $CFG->apacheloguser = 3; // Log username.
 // To get the values logged in Apache's log, add to your httpd.conf
 // the following statements. In the General part put:
 //     LogFormat "%h %l %{MOODLEUSER}n %t \"%r\" %s %b \"%{Referer}i\" \"%{User-Agent}i\"" moodleformat
@@ -401,7 +401,7 @@ $CFG->admin = 'admin';
 //
 // Some filesystems such as NFS may not support file locking operations.
 // Locking resolves race conditions and is strongly recommended for production servers.
-//     $CFG->preventfilelocking = false;
+    $CFG->preventfilelocking = true;
 //
 // Site default language can be set via standard administration interface. If you
 // want to have initial error messages for eventual database connection problems
@@ -529,15 +529,17 @@ $CFG->admin = 'admin';
 //=========================================================================
 //
 // Force a debugging mode regardless the settings in the site administration
-// @error_reporting(E_ALL | E_STRICT); // NOT FOR PRODUCTION SERVERS!
-// @ini_set('display_errors', '1');    // NOT FOR PRODUCTION SERVERS!
-// $CFG->debug = (E_ALL | E_STRICT);   // === DEBUG_DEVELOPER - NOT FOR PRODUCTION SERVERS!
-// $CFG->debugdisplay = 1;             // NOT FOR PRODUCTION SERVERS!
+if(getenv('FORCE_DEBUG') == true) {
+    @error_reporting(E_ALL | E_STRICT); // NOT FOR PRODUCTION SERVERS!
+    @ini_set('display_errors', '1');    // NOT FOR PRODUCTION SERVERS!
+    $CFG->debug = (E_ALL | E_STRICT);   // === DEBUG_DEVELOPER - NOT FOR PRODUCTION SERVERS!
+    $CFG->debugdisplay = 1;             // NOT FOR PRODUCTION SERVERS!   
+}
 //
 // You can specify a comma separated list of user ids that that always see
 // debug messages, this overrides the debug flag in $CFG->debug and $CFG->debugdisplay
 // for these users only.
-// $CFG->debugusers = '2';
+$CFG->debugusers = '2';
 //
 // Prevent theme caching
 // $CFG->themedesignermode = true; // NOT FOR PRODUCTION SERVERS!
