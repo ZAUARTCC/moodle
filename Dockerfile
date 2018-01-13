@@ -15,6 +15,10 @@ COPY moodle-config.php /var/www/html/config.php
 # Let the container know that there is no tty
 ENV DEBIAN_FRONTEND noninteractive
 
+ENV FORCE_DEBUG false
+
+ENV VERSION MOODLE_33_STABLE
+
 # Database info and other connection information derrived from env variables. See readme.
 # Set ENV Variables externally Moodle_URL should be overridden.
 ENV MOODLE_URL http://127.0.0.1
@@ -26,7 +30,7 @@ RUN apt-get update && \
 		php-gd libapache2-mod-php postfix wget supervisor php-pgsql curl libcurl3 \
 		libcurl3-dev php-curl php-xmlrpc php-intl php-mysql git-core php-xml php-mbstring php-zip php-soap cron php7.0-ldap && \
 	cd /tmp && \
-	git clone -b MOODLE_33_STABLE git://git.moodle.org/moodle.git --depth=1 && \
+	git clone -b ${VERSION} git://git.moodle.org/moodle.git --depth=1 && \
 	mv /tmp/moodle/* /var/www/html/ && \
 	rm /var/www/html/index.html && \
 	chown -R www-data:www-data /var/www/html && \
