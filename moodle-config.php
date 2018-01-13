@@ -291,7 +291,7 @@ $CFG->admin = 'admin';
 //
 // Enable when using external SSL appliance for performance reasons.
 // Please note that site may be accessible via https: or https:, but not both!
-     $CFG->sslproxy = getenv('SSL_PROXY');
+     $CFG->sslproxy = true;
 //
 // This setting will cause the userdate() function not to fix %d in
 // date strings, and just let them show with a zero prefix.
@@ -362,8 +362,7 @@ $CFG->admin = 'admin';
 //     $CFG->apacheloguser = 0; // Turn this feature off. Default value.
 //     $CFG->apacheloguser = 1; // Log user id.
 //     $CFG->apacheloguser = 2; // Log full name in cleaned format. ie, Darth Vader will be displayed as darth_vader.
-//     $CFG->apacheloguser = 3; // Log username.
-    $CFG->appacheloguser = get_env('APPACHE_LOG_USER');
+    $CFG->apacheloguser = 3; // Log username.
 // To get the values logged in Apache's log, add to your httpd.conf
 // the following statements. In the General part put:
 //     LogFormat "%h %l %{MOODLEUSER}n %t \"%r\" %s %b \"%{Referer}i\" \"%{User-Agent}i\"" moodleformat
@@ -402,7 +401,7 @@ $CFG->admin = 'admin';
 //
 // Some filesystems such as NFS may not support file locking operations.
 // Locking resolves race conditions and is strongly recommended for production servers.
-    $CFG->preventfilelocking = !getenv('FILE_LOCKING');
+    $CFG->preventfilelocking = true;
 //
 // Site default language can be set via standard administration interface. If you
 // want to have initial error messages for eventual database connection problems
