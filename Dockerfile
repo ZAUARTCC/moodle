@@ -16,6 +16,9 @@ COPY moodle-config.php /var/www/html/config.php
 ENV DEBIAN_FRONTEND noninteractive
 
 ENV FORCE_DEBUG false
+ENV SSL_PROXY flase
+ENV APPACHE_LOG_USER 3
+ENV FILE_LOCKING false;
 
 ENV VERSION MOODLE_33_STABLE
 
