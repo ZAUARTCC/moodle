@@ -2,7 +2,7 @@
 # Dockerfile for moodle instance. more dockerish version of https://github.com/sergiogomez/docker-moodle
 # Forked from Jon Auer's docker version. https://github.com/jda/docker-moodle
 FROM ubuntu:16.04
-MAINTAINER Jonathan Hardison <jmh@jonathanhardison.com>
+MAINTAINER Aaron Osher <aaron@aaronosher.io>
 
 VOLUME ["/var/moodledata"]
 EXPOSE 80 443
@@ -32,8 +32,11 @@ RUN apt-get update && \
 	cd /tmp && \
 	git clone -b ${VERSION} git://git.moodle.org/moodle.git --depth=1 && \
 	mv /tmp/moodle/* /var/www/html/ && \
-	rm /var/www/html/index.html && \
-	chown -R www-data:www-data /var/www/html && \
+	rm /var/www/html/index.html
+
+COPY php.ini /var/www/html/php.ini
+
+RUN chown -R www-data:www-data /var/www/html && \
 	chmod +x /etc/apache2/foreground.sh
 
 #cron
