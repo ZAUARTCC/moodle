@@ -35,6 +35,7 @@ RUN apt-get update && \
 	rm /var/www/html/index.html
 
 COPY php.ini /var/www/html/php.ini
+COPY php.ini /etc/php/7.0/apache2/php.ini
 
 RUN chown -R www-data:www-data /var/www/html && \
 	chmod +x /etc/apache2/foreground.sh
