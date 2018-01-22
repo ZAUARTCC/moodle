@@ -34,7 +34,9 @@ RUN apt-get update && \
 	mv /tmp/moodle/* /var/www/html/ && \
 	rm /var/www/html/index.html && \
 	cd /var/www/html/auth && \
-	git clone -b VERSION_1 https://github.com/ZAUARTCC/moodle-auth.git --depth=1 zauartcc
+	git clone -b VERSION_1 https://github.com/ZAUARTCC/moodle-auth.git --depth=1 zauartcc && \
+  cd /var/www/html/theme && \
+  git clone -b ${VERSION} https://github.com/ZAUARTCC/moodle-theme.git --depth=1 enlightlite
 
 COPY php.ini /var/www/html/php.ini
 COPY php.ini /etc/php/7.0/apache2/php.ini
