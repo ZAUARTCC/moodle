@@ -33,6 +33,8 @@ RUN apt-get update && \
 	git clone -b ${VERSION} git://git.moodle.org/moodle.git --depth=1 && \
 	mv /tmp/moodle/* /var/www/html/ && \
 	rm /var/www/html/index.html && \
+	cd /var/www/html/auth && \
+	git clone -b VERSION_1 https://github.com/ZAUARTCC/moodle-auth.git --depth=1 zauartcc && \
 	chown -R www-data:www-data /var/www/html && \
 	chmod +x /etc/apache2/foreground.sh
 
