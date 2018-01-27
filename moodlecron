@@ -1,1 +1,1 @@
-* * * * * /usr/bin/php /var/www/html/admin/cli/cron.php >> /var/moodledata/cronlog
+* * * * * /usr/bin/php /var/www/html/admin/cli/cron.php >> /var/moodledata/cronlog 2>&1
